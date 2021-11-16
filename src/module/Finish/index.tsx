@@ -1,13 +1,11 @@
 import React, { useEffect } from 'react';
 
-import { CheckCircleFilled } from '@ant-design/icons';
 import { Col, Row } from 'antd';
 import Head from 'next/head';
 
 import Background from 'common/assets/bg.svg';
 import { Symptom } from 'common/constants/advice';
 import IFormInput from 'common/constants/form_type';
-import { choiceRespiratorySystem, choiceSymptom } from 'common/constants/questions';
 
 interface Props {
   nextPage?: () => void;
