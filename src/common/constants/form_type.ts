@@ -2,6 +2,21 @@ interface IFormInput {
   uid?: string;
   display_name?: string;
   display_image?: string;
+  CardiovascularSystem?: string[];
+  EarEyesThroatAndNoseSystem?: string[];
+  ImmuneSystem?: string[];
+  MusculoskeletalSystem?: string[];
+  NervousSystem?: string[];
+  PsychiatricSystem?: string[];
+  RespiratorySystem?: string[];
+  SkinSystem?: string[];
+  StomachAndIntestinalSystem?: string[];
+  Symptom?: string[];
+}
+interface IFormInputOld {
+  uid?: string;
+  display_name?: string;
+  display_image?: string;
   prefix_name?: string;
   prefix_nameEtc?: string | undefined;
   first_name?: string;
