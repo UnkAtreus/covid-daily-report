@@ -1,11 +1,7 @@
-import Finish from 'module/Finish';
-
 import React, { useEffect, useState } from 'react';
 
-import { UserOutlined, ContactsOutlined, HeartOutlined } from '@ant-design/icons';
-import { Col, Row, Steps } from 'antd';
+import { Col, Row } from 'antd';
 import Head from 'next/head';
-import { useRouter } from 'next/router';
 
 import { NextPage } from 'next';
 
@@ -15,19 +11,13 @@ import IFormInput from 'common/constants/form_type';
 import liffId from '../../../line-liff.env';
 
 import AdviceInfo from './components/Form/AdviceInfo';
-import ContactInfo from './components/Form/ContactInfo';
 import HealthInfo from './components/Form/HealthInfo';
-import PersonalHealth from './components/Form/PersonalHealth';
-import PersonalInfo from './components/Form/PersonalInfo';
-import PreviewInfo from './components/Form/PreviewInfo';
 
 const Home: NextPage = () => {
   const [page, setPage] = useState<number>(0);
   const [data, setData] = useState<IFormInput | undefined>();
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [userId, setUserId] = useState<string | undefined>();
-  const { Step } = Steps;
-  const router = useRouter();
 
   useEffect(() => {
     (async () => {
@@ -116,31 +106,7 @@ const Home: NextPage = () => {
             <div className="text-center text-white text-2xl mb-2">
               PNC Post Covid-19 Care
             </div>
-            {/* <div className="flex flex-1 mb-4 md:hidden xxs:hidden">
-              <Steps current={page} labelPlacement="vertical">
-                <Step title="ข้อมูลผู้ป่วย" icon={<UserOutlined />} />
-                <Step title="ข้อมูลติดต่อ" icon={<ContactsOutlined />} />
-                <Step title="สุขภาพร่างกาย" icon={<HeartOutlined />} />
-              </Steps>
-            </div> */}
           </div>
-
-          {/* <Col
-            xs={0}
-            md={{ span: 14, offset: 5 }}
-            lg={{ span: 10, offset: 7 }}
-            xl={{ span: 8, offset: 8 }}
-            className="z-10">
-            <div
-              className="rounded-2xl shadow-md -mb-8 py-8 -mt-16"
-              style={{ background: '#383E56' }}>
-              <Steps current={page} labelPlacement="vertical">
-                <Step title="ข้อมูลผู้ป่วย" icon={<UserOutlined />} />
-                <Step title="ข้อมูลติดต่อ" icon={<ContactsOutlined />} />
-                <Step title="สุขภาพร่างกาย" icon={<HeartOutlined />} />
-              </Steps>
-            </div>
-          </Col> */}
 
           <Col
             xs={{ span: 22, offset: 1 }}
