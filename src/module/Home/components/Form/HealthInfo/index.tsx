@@ -178,9 +178,9 @@ const HealthInfo: React.FC<Props> = ({
       {!preview && (
         <Form.Item>
           <div className="space-x-4 hidden justify-center md:flex">
-            <Button onClick={previousPage} style={{ width: '156px' }}>
+            {/* <Button onClick={previousPage} style={{ width: '156px' }}>
               ย้อนกลับ
-            </Button>
+            </Button> */}
             <Button type="primary" htmlType="submit" style={{ width: '156px' }}>
               ยืนยัน
             </Button>

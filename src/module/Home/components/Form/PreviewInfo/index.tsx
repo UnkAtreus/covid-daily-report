@@ -17,7 +17,6 @@ interface Props {
 }
 
 const PreviewInfo: React.FC<Props> = ({ setData, data, previousPage }) => {
-  const router = useRouter();
   // const sendData = async (finalData: IFormInput | undefined) => {
   //   await post('api/register', finalData)
   //     .then((res) => {
