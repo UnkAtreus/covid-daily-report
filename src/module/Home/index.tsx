@@ -6,7 +6,7 @@ import Head from 'next/head';
 import { NextPage } from 'next';
 
 import Background from 'common/assets/bg.svg';
-import IFormInput from 'common/constants/form_type';
+import { IFormInputCovid } from 'common/constants/form_type';
 
 import liffId from '../../../line-liff.env';
 
@@ -15,7 +15,7 @@ import HealthInfo from './components/Form/HealthInfo';
 
 const Home: NextPage = () => {
   const [page, setPage] = useState<number>(0);
-  const [data, setData] = useState<IFormInput | undefined>();
+  const [data, setData] = useState<IFormInputCovid | undefined>();
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [userId, setUserId] = useState<string | undefined>();
 

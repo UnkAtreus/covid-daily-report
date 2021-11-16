@@ -186,7 +186,7 @@ const HealthInfo: React.FC<Props> = ({
             </Button>
           </div>
           <div className="flex space-x-4 md:hidden">
-            <Button onClick={previousPage}>ย้อนกลับ</Button>
+            {/* <Button onClick={previousPage}>ย้อนกลับ</Button> */}
             <Button type="primary" htmlType="submit" block>
               ยืนยัน
             </Button>

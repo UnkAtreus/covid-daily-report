@@ -1,4 +1,4 @@
-interface IFormInput {
+export interface IFormInputCovid {
   uid?: string;
   display_name?: string;
   display_image?: string;
@@ -13,7 +13,7 @@ interface IFormInput {
   StomachAndIntestinalSystem?: string[];
   Symptom?: string[];
 }
-interface IFormInputOld {
+interface IFormInput {
   uid?: string;
   display_name?: string;
   display_image?: string;

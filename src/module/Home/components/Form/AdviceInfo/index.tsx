@@ -1,13 +1,13 @@
 import React from 'react';
 
 import { Symptom } from 'common/constants/advice';
-import IFormInput from 'common/constants/form_type';
+import { IFormInputCovid } from 'common/constants/form_type';
 
 interface Props {
   nextPage?: () => void;
   previousPage?: () => void;
-  data: IFormInput | undefined;
-  setData: React.Dispatch<React.SetStateAction<IFormInput | undefined>>;
+  data: IFormInputCovid | undefined;
+  setData: React.Dispatch<React.SetStateAction<IFormInputCovid | undefined>>;
   preview?: boolean;
 }
 
