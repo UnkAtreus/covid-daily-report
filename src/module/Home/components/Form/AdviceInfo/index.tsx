@@ -17,6 +17,8 @@ interface Props {
 
 const AdviceInfo: React.FC<Props> = ({ data, preview, setPage }) => {
   const Router = useRouter();
+  console.log(preview);
+
   return (
     <div>
       {data?.Symptom &&
