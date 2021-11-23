@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import { Col, Row } from 'antd';
+import dayjs from 'dayjs';
 import Head from 'next/head';
 
 import { NextPage } from 'next';
@@ -12,6 +13,7 @@ import liffId from '../../../line-liff.env';
 
 import AdviceInfo from './components/Form/AdviceInfo';
 import HealthInfo from './components/Form/HealthInfo';
+import PreviewInfo from './components/Form/PreviewInfo';
 
 const Home: NextPage = () => {
   const [page, setPage] = useState<number>(0);
@@ -41,9 +43,17 @@ const Home: NextPage = () => {
           display_name: profile.displayName,
           display_image: profile.pictureUrl,
         }));
-        setUserId(profile.userId);
       }
     })();
+  }, []);
+
+  useEffect(() => {
+    const daily = localStorage.getItem('DAILY');
+
+    if (daily && dayjs(daily).toDate() < dayjs().toDate()) {
+      setData(JSON.parse(localStorage.getItem('DAILY_DATA') || '{}'));
+      setPage(2);
+    }
   }, []);
 
   const nextPage = () => {
@@ -70,6 +80,16 @@ const Home: NextPage = () => {
           />
         );
       case 1:
+        return (
+          <PreviewInfo
+            data={data}
+            setData={setData}
+            previousPage={previousPage}
+            nextPage={nextPage}
+          />
+        );
+
+      case 2:
         return (
           <AdviceInfo
             data={data}

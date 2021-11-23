@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { Form, Button, Checkbox, Row, Col } from 'antd';
+import dayjs from 'dayjs';
 
 import IFormInput from 'common/constants/form_type';
 import {
@@ -24,17 +25,13 @@ interface Props {
   preview?: boolean;
 }
 
-const HealthInfo: React.FC<Props> = ({
-  nextPage,
-  previousPage,
-  setData,
-  data,
-  preview = false,
-}) => {
+const HealthInfo: React.FC<Props> = ({ nextPage, setData, data, preview = false }) => {
   const onFinish = (values: IFormInput) => {
     setData((oldData) => ({ ...oldData, ...values }));
     console.log(data);
     if (nextPage) {
+      localStorage.setItem('DAILY', dayjs().toISOString());
+      localStorage.setItem('DAILY_DATA', JSON.stringify(data));
       nextPage();
     }
   };
@@ -188,7 +185,7 @@ const HealthInfo: React.FC<Props> = ({
           <div className="flex space-x-4 md:hidden">
             {/* <Button onClick={previousPage}>ย้อนกลับ</Button> */}
             <Button type="primary" htmlType="submit" block>
-              ยืนยัน
+              ถัดไป
             </Button>
           </div>
         </Form.Item>

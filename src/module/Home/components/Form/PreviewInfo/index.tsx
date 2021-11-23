@@ -1,22 +1,20 @@
 import React from 'react';
 
 import { Button, Modal } from 'antd';
-import { useRouter } from 'next/router';
 
 import IFormInput from 'common/constants/form_type';
 
-import ContactInfo from '../ContactInfo';
-import PersonalHealth from '../PersonalHealth';
-import PersonalInfo from '../PersonalInfo';
+import AdviceInfo from '../AdviceInfo';
+import HealthInfo from '../HealthInfo';
 
 interface Props {
   data: IFormInput | undefined;
   setData: React.Dispatch<React.SetStateAction<IFormInput | undefined>>;
   previousPage?: () => void;
-  nextPage?: () => void;
+  nextPage: () => void;
 }
 
-const PreviewInfo: React.FC<Props> = ({ setData, data, previousPage }) => {
+const PreviewInfo: React.FC<Props> = ({ setData, data, previousPage, nextPage }) => {
   // const sendData = async (finalData: IFormInput | undefined) => {
   //   await post('api/register', finalData)
   //     .then((res) => {
@@ -31,25 +29,8 @@ const PreviewInfo: React.FC<Props> = ({ setData, data, previousPage }) => {
   function finalizeData() {
     const temp = data;
 
-    if (temp?.identity_card) {
-      temp.identity_card = temp.identity_card.replaceAll('-', '');
-    }
-
-    if (temp?.phone_number) {
-      temp.phone_number = temp.phone_number.replaceAll('-', '');
-    }
-
-    if (temp?.items_medicineEtc) {
-      temp.items_medicine?.push(temp.items_medicineEtc);
-    }
-    if (temp?.symptomsEtc) {
-      temp.symptoms?.push(temp.symptomsEtc);
-    }
-    if (temp?.congenital_diseasesEtc) {
-      temp.congenital_diseases?.push(temp.congenital_diseasesEtc);
-    }
-
     // sendData(temp);
+    nextPage();
 
     console.log(temp);
   }
@@ -68,9 +49,9 @@ const PreviewInfo: React.FC<Props> = ({ setData, data, previousPage }) => {
   }
   return (
     <>
-      <PersonalInfo setData={setData} data={data} preview={true} />
-      <ContactInfo setData={setData} data={data} preview={true} />
-      <PersonalHealth setData={setData} data={data} preview={true} />
+      <HealthInfo setData={setData} data={data} preview={true} />
+      <div className="text-2xl text-center mt-16 mb-8">คำแนะนำ</div>
+      <AdviceInfo data={data} setData={setData} previousPage={previousPage} />
 
       <div className="space-x-4 hidden justify-center md:flex">
         <Button onClick={previousPage} style={{ width: '156px' }}>
