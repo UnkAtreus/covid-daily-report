@@ -59,7 +59,7 @@ const AdviceInfo: React.FC<Props> = ({ data, preview, setPage }) => {
         data?.ImmuneSystem.map((symtoms) => {
           return <Symptom key={symtoms} symtoms={symtoms} />;
         })}
-      {!preview && (
+      {preview && (
         <>
           <div className="space-x-4 hidden justify-center md:flex">
             <Button
