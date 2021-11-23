@@ -14,7 +14,7 @@ interface Props {
   preview?: boolean;
 }
 
-const AdviceInfo: React.FC<Props> = ({ data }) => {
+const AdviceInfo: React.FC<Props> = ({ data, preview }) => {
   const Router = useRouter();
   return (
     <div>
@@ -58,32 +58,36 @@ const AdviceInfo: React.FC<Props> = ({ data }) => {
         data?.ImmuneSystem.map((symtoms) => {
           return <Symptom key={symtoms} symtoms={symtoms} />;
         })}
-      <div className="space-x-4 hidden justify-center md:flex">
-        <Button
-          type="primary"
-          htmlType="submit"
-          style={{ width: '156px' }}
-          onClick={() => {
-            localStorage.removeItem('DAILY');
-            localStorage.removeItem('DAILY_DATA');
-            Router.push('/');
-          }}>
-          กรอกฟอร์มอีกครั้ง
-        </Button>
-      </div>
-      <div className="flex space-x-4 md:hidden">
-        <Button
-          type="primary"
-          htmlType="submit"
-          onClick={() => {
-            localStorage.removeItem('DAILY');
-            localStorage.removeItem('DAILY_DATA');
-            Router.push('/');
-          }}
-          block>
-          กรอกฟอร์มอีกครั้ง
-        </Button>
-      </div>
+      {!preview && (
+        <>
+          <div className="space-x-4 hidden justify-center md:flex">
+            <Button
+              type="primary"
+              htmlType="submit"
+              style={{ width: '156px' }}
+              onClick={() => {
+                localStorage.removeItem('DAILY');
+                localStorage.removeItem('DAILY_DATA');
+                Router.push('/');
+              }}>
+              กรอกฟอร์มอีกครั้ง
+            </Button>
+          </div>
+          <div className="flex space-x-4 md:hidden">
+            <Button
+              type="primary"
+              htmlType="submit"
+              onClick={() => {
+                localStorage.removeItem('DAILY');
+                localStorage.removeItem('DAILY_DATA');
+                Router.push('/');
+              }}
+              block>
+              กรอกฟอร์มอีกครั้ง
+            </Button>
+          </div>
+        </>
+      )}
     </div>
   );
 };
