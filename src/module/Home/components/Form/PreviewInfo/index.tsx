@@ -51,7 +51,12 @@ const PreviewInfo: React.FC<Props> = ({ setData, data, previousPage, nextPage })
     <>
       <HealthInfo setData={setData} data={data} preview={true} />
       <div className="text-2xl text-center mt-16 mb-8">คำแนะนำ</div>
-      <AdviceInfo data={data} setData={setData} previousPage={previousPage} />
+      <AdviceInfo
+        data={data}
+        setData={setData}
+        previousPage={previousPage}
+        preview={true}
+      />
 
       <div className="space-x-4 hidden justify-center md:flex">
         <Button onClick={previousPage} style={{ width: '156px' }}>
