@@ -12,9 +12,10 @@ interface Props {
   data: IFormInputCovid | undefined;
   setData: React.Dispatch<React.SetStateAction<IFormInputCovid | undefined>>;
   preview?: boolean;
+  setPage?: (num: number) => void;
 }
 
-const AdviceInfo: React.FC<Props> = ({ data, preview }) => {
+const AdviceInfo: React.FC<Props> = ({ data, preview, setPage }) => {
   const Router = useRouter();
   return (
     <div>
@@ -68,6 +69,9 @@ const AdviceInfo: React.FC<Props> = ({ data, preview }) => {
               onClick={() => {
                 localStorage.removeItem('DAILY');
                 localStorage.removeItem('DAILY_DATA');
+                if (setPage) {
+                  setPage(0);
+                }
                 Router.push('/');
               }}>
               กรอกฟอร์มอีกครั้ง
@@ -80,6 +84,9 @@ const AdviceInfo: React.FC<Props> = ({ data, preview }) => {
               onClick={() => {
                 localStorage.removeItem('DAILY');
                 localStorage.removeItem('DAILY_DATA');
+                if (setPage) {
+                  setPage(0);
+                }
                 Router.push('/');
               }}
               block>

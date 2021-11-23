@@ -96,6 +96,7 @@ const Home: NextPage = () => {
             setData={setData}
             previousPage={previousPage}
             nextPage={nextPage}
+            setPage={setPage}
           />
         );
       default:
