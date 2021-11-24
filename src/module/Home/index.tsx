@@ -152,7 +152,7 @@ const Home: NextPage = () => {
             className="bg-no-repeat bg-center bg-primary-200 bg-cover h-56 w-full"
             style={{ backgroundImage: `url(${Background.src})` }}>
             <div className="text-center text-white text-2xl mt-8 sm:mt-16">
-              แบบฟอร์มสำรวจอาการโควิด-19รายวัน
+              แบบฟอร์มสำรวจอาการโควิด 19 รายวัน
             </div>
             <div className="text-center text-white text-2xl mb-2">
               PNC Post Covid-19 Care
