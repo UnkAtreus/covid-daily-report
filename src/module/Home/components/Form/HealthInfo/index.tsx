@@ -30,7 +30,7 @@ const HealthInfo: React.FC<Props> = ({ nextPage, setData, data, preview = false 
     setData((oldData) => ({ ...oldData, ...values }));
     console.log(data);
     if (nextPage) {
-      localStorage.setItem('DAILY', dayjs().toISOString());
+      localStorage.setItem('DAILY', dayjs().add(7, 'hour').toISOString());
       localStorage.setItem('DAILY_DATA', JSON.stringify(data));
       nextPage();
     }

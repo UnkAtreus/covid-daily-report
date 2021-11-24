@@ -13,46 +13,66 @@ import liffId from '../../../line-liff.env';
 
 import AdviceInfo from './components/Form/AdviceInfo';
 import HealthInfo from './components/Form/HealthInfo';
+import PersonalInfo from './components/Form/PersonalInfo';
 import PreviewInfo from './components/Form/PreviewInfo';
 
 const Home: NextPage = () => {
   const [page, setPage] = useState<number>(0);
   const [data, setData] = useState<IFormInputCovid | undefined>();
+  const [personalData, setPersonalData] = useState<IFormInputCovid | undefined>();
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [userId, setUserId] = useState<string | undefined>();
 
-  useEffect(() => {
-    (async () => {
-      const liff = (await import('@line/liff')).default;
-      try {
-        await liff.init({ liffId });
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      } catch (error: any) {
-        console.error('liff init error', error.message);
-      }
-      if (!liff.isLoggedIn()) {
-        liff.login();
-      } else {
-        await liff.ready;
-        const profile = await liff.getProfile();
-        console.log('profile', profile);
+  // useEffect(() => {
+  //   (async () => {
+  //     const liff = (await import('@line/liff')).default;
+  //     try {
+  //       await liff.init({ liffId });
+  //       // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  //     } catch (error: any) {
+  //       console.error('liff init error', error.message);
+  //     }
+  //     if (!liff.isLoggedIn()) {
+  //       liff.login();
+  //     } else {
+  //       await liff.ready;
+  //       const profile = await liff.getProfile();
+  //       console.log('profile', profile);
 
-        setData((old) => ({
-          ...old,
-          uid: profile.userId,
-          display_name: profile.displayName,
-          display_image: profile.pictureUrl,
-        }));
-      }
-    })();
-  }, []);
+  //       setData((old) => ({
+  //         ...old,
+  //         uid: profile.userId,
+  //         display_name: profile.displayName,
+  //         display_image: profile.pictureUrl,
+  //       }));
+  //     }
+  //   })();
+  // }, []);
 
   useEffect(() => {
     const daily = localStorage.getItem('DAILY');
-
-    if (daily && dayjs(daily).toDate() < dayjs().toDate()) {
-      setData(JSON.parse(localStorage.getItem('DAILY_DATA') || '{}'));
-      setPage(2);
+    if (localStorage.getItem('PERSONAL_DATA')) {
+      setPage(1);
+      if (
+        daily &&
+        dayjs()
+          .set('hour', 0)
+          .set('minute', 0)
+          .set('second', 0)
+          .set('millisecond', 0)
+          .add(7, 'hours')
+          .isSame(
+            dayjs(daily)
+              .set('hour', 0)
+              .set('minute', 0)
+              .set('second', 0)
+              .set('millisecond', 0)
+              .add(7, 'hours'),
+          )
+      ) {
+        setData(JSON.parse(localStorage.getItem('DAILY_DATA') || '{}'));
+        setPage(3);
+      }
     }
   }, []);
 
@@ -72,6 +92,14 @@ const Home: NextPage = () => {
     switch (page) {
       case 0:
         return (
+          <PersonalInfo
+            data={personalData}
+            setData={setPersonalData}
+            nextPage={nextPage}
+          />
+        );
+      case 1:
+        return (
           <HealthInfo
             data={data}
             setData={setData}
@@ -79,7 +107,7 @@ const Home: NextPage = () => {
             nextPage={nextPage}
           />
         );
-      case 1:
+      case 2:
         return (
           <PreviewInfo
             data={data}
@@ -89,7 +117,7 @@ const Home: NextPage = () => {
           />
         );
 
-      case 2:
+      case 3:
         return (
           <AdviceInfo
             data={data}
@@ -100,6 +128,8 @@ const Home: NextPage = () => {
           />
         );
       default:
+        console.log('default');
+
         return (
           <HealthInfo
             data={data}

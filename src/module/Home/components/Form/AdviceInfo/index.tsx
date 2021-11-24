@@ -72,7 +72,7 @@ const AdviceInfo: React.FC<Props> = ({ data, preview, setPage }) => {
                 localStorage.removeItem('DAILY');
                 localStorage.removeItem('DAILY_DATA');
                 if (setPage) {
-                  setPage(0);
+                  setPage(1);
                 }
                 Router.push('/');
               }}>
@@ -87,7 +87,7 @@ const AdviceInfo: React.FC<Props> = ({ data, preview, setPage }) => {
                 localStorage.removeItem('DAILY');
                 localStorage.removeItem('DAILY_DATA');
                 if (setPage) {
-                  setPage(0);
+                  setPage(1);
                 }
                 Router.push('/');
               }}

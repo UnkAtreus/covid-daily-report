@@ -19,6 +19,9 @@ const PersonalInfo: React.FC<Props> = ({ nextPage, setData, data, preview = fals
   const onFinish = (values: IFormInput) => {
     setData((oldData) => ({ ...oldData, ...values }));
     if (nextPage) {
+      // console.log(values);
+      localStorage.setItem('PERSONAL_DATA', JSON.stringify(values));
+
       nextPage();
     }
   };
