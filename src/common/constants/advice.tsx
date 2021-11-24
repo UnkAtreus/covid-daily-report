@@ -11,7 +11,6 @@ export const Symptom = ({ symtoms }: { symtoms: string }): JSX.Element => {
           <div className="text-left text-base font-medium">คำแนะนำ</div>
           <ul className="list-inside list-disc">
             <li>นอนหลับพักผ่อนให้เพียงพอ</li>
-            <li>นอนหลับพักผ่อนให้เพียงพอ</li>
             <li>ดื่มน้ำอย่างพอเหมาะ ไม่ให้ร่างกายขาดน้ำ</li>
             <li>ทำกิจกรรมเพื่อให้ผ่อนคลาย เช่น การเล่นโยคะ</li>
             <li>
