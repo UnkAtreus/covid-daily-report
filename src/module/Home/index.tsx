@@ -23,31 +23,31 @@ const Home: NextPage = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [userId, setUserId] = useState<string | undefined>();
 
-  // useEffect(() => {
-  //   (async () => {
-  //     const liff = (await import('@line/liff')).default;
-  //     try {
-  //       await liff.init({ liffId });
-  //       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  //     } catch (error: any) {
-  //       console.error('liff init error', error.message);
-  //     }
-  //     if (!liff.isLoggedIn()) {
-  //       liff.login();
-  //     } else {
-  //       await liff.ready;
-  //       const profile = await liff.getProfile();
-  //       console.log('profile', profile);
+  useEffect(() => {
+    (async () => {
+      const liff = (await import('@line/liff')).default;
+      try {
+        await liff.init({ liffId });
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      } catch (error: any) {
+        console.error('liff init error', error.message);
+      }
+      if (!liff.isLoggedIn()) {
+        liff.login();
+      } else {
+        await liff.ready;
+        const profile = await liff.getProfile();
+        console.log('profile', profile);
 
-  //       setData((old) => ({
-  //         ...old,
-  //         uid: profile.userId,
-  //         display_name: profile.displayName,
-  //         display_image: profile.pictureUrl,
-  //       }));
-  //     }
-  //   })();
-  // }, []);
+        setData((old) => ({
+          ...old,
+          uid: profile.userId,
+          display_name: profile.displayName,
+          display_image: profile.pictureUrl,
+        }));
+      }
+    })();
+  }, []);
 
   useEffect(() => {
     const daily = localStorage.getItem('DAILY');
